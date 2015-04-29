@@ -21,7 +21,7 @@ class User
 		$this->username_us = "";
 		$this->pass_us = "";
 		$this->hash = md5(uniqid(rand(), TRUE));
-		$this->clocks[] = "";
+		$this->clocks[] = array();
 	}
 	
 	public function setAll($id, $uname, $pass, $hash, $clocks)

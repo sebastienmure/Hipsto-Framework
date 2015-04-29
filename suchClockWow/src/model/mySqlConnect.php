@@ -69,6 +69,11 @@ class MySqlConnect
 		
 		return $arr;
 	}
+	
+	public function getPdo()
+	{
+		$this->pdo;
+	}
 }
 
 ?>
