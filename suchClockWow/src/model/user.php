@@ -1,8 +1,14 @@
 <?php
-namespace model;
+namespace src\model;
 
 class User
 {
+	const NBCOL = 4;
+	const ID = "id_us";
+	const USERNAME = "username_us";
+	const PASS = "pass_us";
+	const HASH = "hash";
+	
 	private $id_us = -1;
 	private $username_us = null;
 	private $pass_us = null;
@@ -18,7 +24,7 @@ class User
 		$this->clocks[] = "";
 	}
 	
-	public function __construc($id, $uname, $pass, $hash, $clocks)
+	public function setAll($id, $uname, $pass, $hash, $clocks)
 	{
 		$this->id_us = $id;
 		$this->username_us = $uname;
@@ -77,7 +83,5 @@ class User
 		}
 		unset($this->clocks[index]);
 	}
-	
 }
-
 ?>

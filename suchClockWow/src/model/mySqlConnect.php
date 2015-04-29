@@ -1,5 +1,5 @@
 <?php
-namespace model;
+namespace src\model;
 
 use PDO;
 
@@ -45,9 +45,15 @@ class MySqlConnect
 		$this->pdo = null;
 	}
 	
+	/**
+	 * @brief Executes pdo->query
+	 * @param String $query
+	 * @return  PDOStatement
+	 */
 	public function query($query)
 	{
 		$arr = null;
+		
 		if($this->pdo != null)
 		{
 			try
