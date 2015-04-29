@@ -3,13 +3,20 @@ namespace src\model;
 
 use PDO;
 
+/**
+ * @brief Gere les operations de connection
+ *  les plus "bas niveau" avec une bdd MySql
+ *
+ */
 class MySqlConnect
 {
 	private static $instance = null;
-	private  $db = "daClockBase";
-	private $dbuser = "root";
-	private $dbpass = "123lol";
 	private $pdo = null;
+	private  $db = "";
+	private $dbuser = "";
+	private $dbpass = "";
+	private $host = "";
+	private $encoding = "";
 	
 	public static function getInstance()
 	{
@@ -19,15 +26,57 @@ class MySqlConnect
 		return self::$instance;
 	}
 	
-	private function __construct()
+	private function loadConfig()
 	{
+		$cfgPath = realpath("../dbconfig.cfg");
+		
+		if($cfgPath == false)
+		{
+			var_dump($cfgPath);
+			die();
+		}
+		else
+		{
+			try
+			{
+				$monfichier = fopen($cfgPath, 'r+');			
+				
+				$args = array();
+				while($ligne = fgets($monfichier))
+				{
+					$arg = explode(":", $ligne);
+					$args[ trim($arg[0]) ] = trim($arg[1]);
+				}
+				fclose($monfichier);
+				  
+				$this->db = $args["dbname"];
+				$this->dbuser = $args["user"];
+				$this->dbpass = $args["pass"];
+				$this->host = $args["host"];
+				$this->encoding = $args["enc"];
+				
+			}
+			catch(\Exception $e)
+			{
+				var_dump("Erreur lors du chargement de la config...");
+				die($e);
+			}
+		}
 	}
 	
+	private function __construct()
+	{
+		$this->loadConfig();
+	}
+	
+	/**
+	 * @brief Initie la connection avec la base
+	 */
 	public function connect()
 	{
 		try
 		{
-			$strConnection = 'mysql:host=localhost;dbname=' . $this->db; //Ligne 1
+			$strConnection = 'mysql:host=' . $this->host . ';dbname=' . $this->db; //Ligne 1
 			$arrExtraParam= array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"); //Ligne 2
 			$this->pdo = new PDO($strConnection, $this->dbuser, $this->dbpass, $arrExtraParam); //Ligne 3; Instancie la connexion
 			$this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);//Ligne 4
@@ -40,6 +89,9 @@ class MySqlConnect
 		
 	}
 	
+	/**
+	 * @brief Termine la connection avec la base
+	 */
 	public function disconnect()
 	{
 		$this->pdo = null;
@@ -48,7 +100,7 @@ class MySqlConnect
 	/**
 	 * @brief Executes pdo->query
 	 * @param String $query
-	 * @return  PDOStatement
+	 * @return  PDOStatement $arr
 	 */
 	public function query($query)
 	{

@@ -1,6 +1,9 @@
 <?php
 namespace src\model;
 
+/**
+ * @brief Represente une entree de la table User
+ */
 class User
 {
 	const NBCOL = 4;

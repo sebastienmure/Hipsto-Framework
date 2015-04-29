@@ -1,6 +1,9 @@
 <?php
 namespace src\model;
 
+/**
+ * @brief Represente une entree de la table Zone
+ */
 class Zone
 {
 	const NBCOL = 3;
