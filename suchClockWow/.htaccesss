@@ -1,0 +1,10 @@
+<Files ~ "^\.(htaccess|htpasswd)$">
+	deny from all
+</Files>
+# pass the default character set
+AddDefaultCharset utf-8
+Options Indexes
+DirectoryIndex index.html index.php      
+order deny,allow
+RewriteEngine on
+RewriteRule !\.(js|ico|gif|jpg|JPG|png|css)$ index.php
