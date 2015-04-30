@@ -1,0 +1,3 @@
+Order deny,allow
+DirectoryIndex test.html
+AddType application/x-httpd-php .htm .html
