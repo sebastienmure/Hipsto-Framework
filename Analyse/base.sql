@@ -3,42 +3,39 @@
 #------------------------------------------------------------
 
 
-#------------------------------------------------------------
-# Table: user
-#------------------------------------------------------------
-
-CREATE TABLE user(
-        id_us       Int NOT NULL ,
+CREATE TABLE User(
+        id_us       int (11) Auto_increment  NOT NULL ,
         username_us Varchar (30) NOT NULL ,
-        pass_us     Varchar (200) NOT NULL ,
-        hash        Varchar (200) NOT NULL ,
         PRIMARY KEY (id_us ) ,
-        INDEX (username_us )
+        UNIQUE (username_us )
 )ENGINE=InnoDB;
 
 
-#------------------------------------------------------------
-# Table: zone
-#------------------------------------------------------------
-
-CREATE TABLE zone(
-        zone_id      Int NOT NULL ,
-        country_code Char (2) NOT NULL ,
-        zone_name    Varchar (35) NOT NULL ,
-        PRIMARY KEY (zone_id ) ,
-        UNIQUE (zone_name )
+CREATE TABLE Horloge(
+        id_ho  int (11) Auto_increment  NOT NULL ,
+        nom_ho Varchar (30) NOT NULL ,
+        id_vi  Int NOT NULL ,
+        PRIMARY KEY (id_ho ) ,
+        UNIQUE (nom_ho )
 )ENGINE=InnoDB;
 
 
-#------------------------------------------------------------
-# Table: voit
-#------------------------------------------------------------
+CREATE TABLE Ville(
+        id_vi     int (11) Auto_increment  NOT NULL ,
+        nom_vi    Varchar (40) NOT NULL ,
+        ufc_vi    Varchar (6) NOT NULL ,
+        fuseau_vi Varchar (5) ,
+        PRIMARY KEY (id_vi ) ,
+        UNIQUE (nom_vi )
+)ENGINE=InnoDB;
+
 
 CREATE TABLE voit(
-        id_us   Int NOT NULL ,
-        zone_id Int NOT NULL ,
-        PRIMARY KEY (id_us ,zone_id )
+        id_us Int NOT NULL ,
+        id_ho Int NOT NULL ,
+        PRIMARY KEY (id_us ,id_ho )
 )ENGINE=InnoDB;
 
-ALTER TABLE voit ADD CONSTRAINT FK_voit_id_us FOREIGN KEY (id_us) REFERENCES user(id_us);
-ALTER TABLE voit ADD CONSTRAINT FK_voit_zone_id FOREIGN KEY (zone_id) REFERENCES zone(zone_id);
+ALTER TABLE Horloge ADD CONSTRAINT FK_Horloge_id_vi FOREIGN KEY (id_vi) REFERENCES Ville(id_vi);
+ALTER TABLE voit ADD CONSTRAINT FK_voit_id_us FOREIGN KEY (id_us) REFERENCES User(id_us);
+ALTER TABLE voit ADD CONSTRAINT FK_voit_id_ho FOREIGN KEY (id_ho) REFERENCES Horloge(id_ho);

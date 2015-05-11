@@ -1,23 +1,30 @@
 <html><head><title></title></head><body>
-	<div id="liste-wrapper"><label><h3>user:</h3></label>
+	<div id="liste-wrapper"><label><h3>User:</h3></label>
 		<ul>
-			<li><strong>id_us</strong> :	Int	PRIMARY KEY</li>
-			<li><strong>username_us</strong> :	Varchar	INDEX</li>
-			<li><strong>pass_us</strong> :	Varchar	</li>
-			<li><strong>hash</strong> :	Varchar	</li>
+			<li><strong>id_us</strong> :	Auto_increment	PRIMARY KEY</li>
+			<li><strong>username_us</strong> :	Varchar	UNIQUE</li>
 		</ul>
 	</div>
-	<div id="liste-wrapper"><label><h3>zone:</h3></label>
+	<div id="liste-wrapper"><label><h3>Horloge:</h3></label>
 		<ul>
-			<li><strong>zone_id</strong> :	Int	PRIMARY KEY</li>
-			<li><strong>country_code</strong> :	Char	</li>
-			<li><strong>zone_name</strong> :	Varchar	UNIQUE</li>
+			<li><strong>id_ho</strong> :	Auto_increment	PRIMARY KEY</li>
+			<li><strong>nom_ho</strong> :	Varchar	UNIQUE</li>
+		</ul>
+	</div>
+	<div id="liste-wrapper"><label><h3>Ville:</h3></label>
+		<ul>
+			<li><strong>id_vi</strong> :	Auto_increment	PRIMARY KEY</li>
+			<li><strong>nom_vi</strong> :	Varchar	UNIQUE</li>
+			<li><strong>ufc_vi</strong> :	Varchar	 </li>
+			<li><strong>fuseau_vi</strong> :	Varchar	 </li>
 		</ul>
 	</div>
 	<div id="links"><label><h3>Liens:</h3></label>
 		<ul>
-			<li>elem 1 : user | elem2 : voit | card : 0,n</li>
-			<li>elem 1 : zone | elem2 : voit | card : 0,n</li>
+			<li>elem 1 : Ville | elem2 : repr | card : 0,n</li>
+			<li>elem 1 : Horloge | elem2 : repr | card : 1,1</li>
+			<li>elem 1 : User | elem2 : voit | card : 0,n</li>
+			<li>elem 1 : Horloge | elem2 : voit | card : 0,n</li>
 		</ul>
 	</div>
 </body></html>
