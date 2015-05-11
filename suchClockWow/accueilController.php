@@ -1,6 +1,6 @@
 <?php
 
-namespace \src\controller
+//namespace \src\controller;
 
 require_once (realpath("./src/model/helper/ZoneHelper.php"));
 require_once (realpath("./src/model/helper/HelperFactory.php"));
@@ -13,7 +13,7 @@ Class AccueilController
 	private $params = null;
 	private $lang = null;
 	
-	function __construct($leparams,$lelang)
+	function __construct($leparams,$lelang = null)
 	{
 		$params = $leparams;
 		$lang = $lelang;
@@ -24,9 +24,14 @@ Class AccueilController
 		require realpath('./vueAccueil.php');
 	}
 
+	function index()
+	{
+		echo "Comin from AccueilController::index()";
+	}
+
 	function accueil() { //affiche toute les zones
 	  $zones = HelperFactory::getInstance()->getHelper("zone")->getAll();
-	  var_dump(realpath("."));
+	  echo("AccueilController::accueil : " . realpath("."));
 	  require_once realpath('./vueAccueil.php');
 	}
 

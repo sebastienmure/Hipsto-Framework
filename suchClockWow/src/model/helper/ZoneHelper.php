@@ -1,9 +1,9 @@
 <?php
 namespace src\model\helper;
 
-require_once '../model/helper/AbsHelper.php';
-require_once '../model/zone.php';
-require_once '../model/user.php';
+require_once (realpath('src/model/helper/AbsHelper.php'));
+require_once (realpath('src/model/zone.php'));
+require_once (realpath('src/model/user.php'));
 
 use src\model\helper\AbsHelper;
 use src\model\Zone;

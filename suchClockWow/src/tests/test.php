@@ -1,6 +1,9 @@
 <?php
 namespace src\tests;
 
+var_dump("expression");
+die();
+
 require_once "..\model\zone.php";
 require_once "..\model\helper\ZoneHelper.php";
 require_once "\..\model\helper\HelperFactory.php";

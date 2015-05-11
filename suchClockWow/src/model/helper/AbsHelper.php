@@ -1,7 +1,8 @@
 <?php
 namespace src\model\helper;
 
-require_once "..\model\mySqlConnect.php";
+require_once (realpath('src/model/mySqlConnect.php'));
+
 use src\model\MySqlConnect;
 
 /**

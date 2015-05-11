@@ -28,11 +28,12 @@ class MySqlConnect
 	
 	private function loadConfig()
 	{
-		$cfgPath = realpath("../dbconfig.cfg");
+		$strCfgPath = "../../dbconfig.cfg";
+		$cfgPath = realpath($strCfgPath);
 		
 		if($cfgPath == false)
 		{
-			var_dump($cfgPath);
+			echo("Erreur lors du chargement du fichier de conf");
 			die();
 		}
 		else

@@ -1,8 +1,8 @@
 <?php
 namespace src\model\helper;
 
-require_once "..\model\helper\UserHelper.php";
-require_once "..\model\helper\ZoneHelper.php";
+require_once (realpath("src/model/helper/UserHelper.php"));
+require_once (realpath("src/model/helper/ZoneHelper.php"));
 
 use src\model\helper\UserHelper;
 use src\model\helper\ZoneHelper;

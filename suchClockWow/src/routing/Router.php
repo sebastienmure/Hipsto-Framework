@@ -115,6 +115,11 @@ class Router
         $script     = $_SERVER['SCRIPT_NAME'];
         //Permet de nettoyer l'url des �ventuels sous dossier
         $tabUrl     = $this->formatUrl($url, $script);
+
+
+        die($tabUrl);
+
+
         $isCustom   = false;
         
         //Supression des �ventuelles parties vides de l'url
